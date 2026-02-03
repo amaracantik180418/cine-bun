@@ -82,3 +82,17 @@ public final class CineBun {
                 DEPLOYMENT_SALT,
                 activeSlots,
                 premiereTime.toEpochMilli(),
+                CHAIN_ID_HEX.substring(0, 18)
+        ).replace("0x", "");
+    }
+
+    public boolean isCoolingComplete(String slotId, long currentNanos) {
+        return frostingLedger.getOrDefault(slotId, 0L) <= currentNanos;
+    }
+
+    public static final class PastrySlot {
+        private final String slotId;
+        private final int frostTier;
+        private final long matineeEpochNanos;
+
+        public PastrySlot(String slotId, int frostTier, long matineeEpochNanos) {
