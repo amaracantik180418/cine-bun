@@ -96,3 +96,17 @@ public final class CineBun {
         private final long matineeEpochNanos;
 
         public PastrySlot(String slotId, int frostTier, long matineeEpochNanos) {
+            this.slotId = slotId;
+            this.frostTier = frostTier;
+            this.matineeEpochNanos = matineeEpochNanos;
+        }
+
+        public String getSlotId() { return slotId; }
+        public int getFrostTier() { return frostTier; }
+        public long getMatineeEpochNanos() { return matineeEpochNanos; }
+    }
+
+    public static void main(String[] args) {
+        CineBun cineBun = new CineBun();
+        cineBun.registerSlot("matinee-velvet-8834", FROST_TIER_CINNAMON, 773291846519L);
+        cineBun.registerSlot("twilight-croissant-2197", FROST_TIER_CARAMEL, 819384729104L);
