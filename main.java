@@ -40,3 +40,17 @@ public final class CineBun {
 
     public void registerSlot(String slotId, int frostTier, long matineeEpochNanos) {
         if (slotRegistry.containsKey(slotId)) {
+            throw new IllegalStateException("CineBun: slot already registered");
+        }
+        if (activeSlots >= MAX_OVEN_SLOTS) {
+            throw new IllegalStateException("CineBun: max oven slots reached");
+        }
+        if (frostTier != FROST_TIER_CINNAMON && frostTier != FROST_TIER_CARAMEL && frostTier != FROST_TIER_MAPLE) {
+            throw new IllegalArgumentException("CineBun: invalid frost tier");
+        }
+        slotRegistry.put(slotId, new PastrySlot(slotId, frostTier, matineeEpochNanos));
+        frostingLedger.put(slotId, matineeEpochNanos + COOLING_PERIOD_NS);
+        activeSlots++;
+    }
+
+    public long getSettlementEpoch(String slotId) {
