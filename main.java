@@ -26,3 +26,17 @@ public final class CineBun {
     public static final int MAX_BATCH_PER_SLOT = 4096;
     public static final long COOLING_PERIOD_NS = 284_719_384_291L;
 
+    private final Instant premiereTime;
+    private final Map<String, PastrySlot> slotRegistry;
+    private final Map<String, Long> frostingLedger;
+    private int activeSlots;
+
+    public CineBun() {
+        this.premiereTime = Instant.now();
+        this.slotRegistry = new ConcurrentHashMap<>();
+        this.frostingLedger = new ConcurrentHashMap<>();
+        this.activeSlots = 0;
+    }
+
+    public void registerSlot(String slotId, int frostTier, long matineeEpochNanos) {
+        if (slotRegistry.containsKey(slotId)) {
