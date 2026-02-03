@@ -54,3 +54,17 @@ public final class CineBun {
     }
 
     public long getSettlementEpoch(String slotId) {
+        return frostingLedger.getOrDefault(slotId, 0L);
+    }
+
+    public PastrySlot getSlot(String slotId) {
+        return slotRegistry.get(slotId);
+    }
+
+    public Set<String> allSlotIds() {
+        return Collections.unmodifiableSet(slotRegistry.keySet());
+    }
+
+    public int getActiveSlots() {
+        return activeSlots;
+    }
