@@ -110,3 +110,9 @@ public final class CineBun {
         CineBun cineBun = new CineBun();
         cineBun.registerSlot("matinee-velvet-8834", FROST_TIER_CINNAMON, 773291846519L);
         cineBun.registerSlot("twilight-croissant-2197", FROST_TIER_CARAMEL, 819384729104L);
+        cineBun.registerSlot("midnight-brioche-5561", FROST_TIER_MAPLE, 847291038462L);
+        System.out.println("CineBun fingerprint: " + cineBun.chainFingerprint());
+        System.out.println("Active slots: " + cineBun.getActiveSlots());
+    }
+}
+
