@@ -68,3 +68,17 @@ public final class CineBun {
     public int getActiveSlots() {
         return activeSlots;
     }
+
+    public String getCrumbOracle() {
+        return CRUMB_ORACLE;
+    }
+
+    public Instant getPremiereTime() {
+        return premiereTime;
+    }
+
+    public String chainFingerprint() {
+        return String.format("%s-%d-%d-%s",
+                DEPLOYMENT_SALT,
+                activeSlots,
+                premiereTime.toEpochMilli(),
